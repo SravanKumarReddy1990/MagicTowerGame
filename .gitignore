@@ -1,0 +1,22 @@
+# General
+.DS_Store
+*~
+*.swp
+*.log
+
+# Editor config folder
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Qt related
+*.o
+*.user
+.qmake.stash
+moc_*
+MagicTower.app
+Makefile
+build*
