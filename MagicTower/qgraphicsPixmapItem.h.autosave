@@ -1,0 +1,20 @@
+#ifndef QGRAPHICSPIXMAPITEM_H
+#define QGRAPHICSPIXMAPITEM_H
+#include<QGraphicsPixmapItem>
+#include<QMessageBox>
+#include<QGraphicsView>
+
+class QGRAPHICSPIXMAPITEMSS: public QGraphicsPixmapItem {
+ public:
+  QGRAPHICSPIXMAPITEMSS(QPixmap pixmap): QGraphicsPixmapItem(pixmap) {
+  };
+
+  ~QGRAPHICSPIXMAPITEMSS() {
+  };
+
+  void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) {
+    QMessageBox::information(NULL, "Information!", "Mouse release Detected!");
+  };
+};
+
+#endif // QGRAPHICSPIXMAPITEM_H

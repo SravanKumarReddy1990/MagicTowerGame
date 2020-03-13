@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QLabel>
 #include <QGridLayout>
+#include "qgraphicsPmapItem.h"
 // Constants
 const int kPixlen = 32;             // The pixels of each block
 const int kOffsetX = 174;           // The offset of x
@@ -47,10 +48,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     // Create all menus in mainwindow
     CreateMenus();
-    scene->setSceneRect(-200,-200,400,400);
+    scene->setSceneRect(-200,-200,400,600);
 
     view->setScene(scene);
-    view->setMinimumSize(400,400);
+    view->setMinimumSize(400,600);
     //view->setRenderHint(QPainter::Antialiasing);
     view->show();
 
@@ -152,9 +153,7 @@ void MainWindow::CreateMenus() {             // Create all menus in mainwindow
     cheatMenu->addSeparator();
     cheatMenu->addAction(cheatMode);
 
-QGraphicsPixmapItem *item = scene->addPixmap(QPixmap(":/assets/xboxControllerLeftShoulder.png"));
-//item->setFlag(QGraphicsItem::ItemIsMovable);
-item->setPos(100,100);
+
 
 
 }
@@ -185,6 +184,41 @@ void MainWindow::CreateInform() {           // Print player information
         AddPictureItem(-60, 367, "sword");
     if (tools.GetShield())
         AddPictureItem(-60, 405, "shield");
+
+    QGraphicsScene *scenes =  new QGraphicsScene;
+    QGraphicsView *qgv =  new QGraphicsView(this);
+    qgv->setGeometry(QRect(50, 450, 400, 100));
+    QPixmap left(":/images/assets/left.png");
+    QPixmap lefts = left.scaled(QSize(64, 64));
+    QPixmap right(":/images/assets/right.jpg");
+    QPixmap rights = right.scaled(QSize(64, 64));
+    QPixmap up(":/images/assets/up.jpg");
+    QPixmap ups = up.scaled(QSize(64, 64));
+    QPixmap down(":/images/assets/down.jpg");
+    QPixmap downs = down.scaled(QSize(64, 64));
+    //scenes->addPixmap(scaled);
+    qgv->setScene(scenes);
+    QGRAPHICSPMAPITEM *lef=new QGRAPHICSPMAPITEM("left",scenes,lefts);
+    lef->setPos(QPoint(-300, 10));
+    QGRAPHICSPMAPITEM *righ=new QGRAPHICSPMAPITEM("right",scenes,rights);
+    righ->setPos(QPoint(0, 10));
+    QGRAPHICSPMAPITEM *u=new QGRAPHICSPMAPITEM("up",scenes,ups);
+    u->setPos(QPoint(-200, 10));
+    QGRAPHICSPMAPITEM *dow=new QGRAPHICSPMAPITEM("down",scenes,downs);
+    dow->setPos(QPoint(-90, 10));
+
+            //    QGraphicsPixmapItem *lef = scenes->addPixmap(lefts);
+//    lef->setFlag(QGraphicsItem::ItemIsMovable);
+//    lef->mouseMoveEvent(QMouseEvent *qgv);
+//    QGraphicsPixmapItem *righ = scenes->addPixmap(rights);
+//    righ->setFlag(QGraphicsItem::ItemIsMovable);
+//    QGraphicsPixmapItem *u = scenes->addPixmap(ups);
+//    u->setFlag(QGraphicsItem::ItemIsMovable);
+//    QGraphicsPixmapItem *dow = scenes->addPixmap(downs);
+//    dow->setFlag(QGraphicsItem::ItemIsMovable);
+    //lef->setPos(10,10);
+    qgv->show();
+
 }
 
 void MainWindow::slotDrawScene() {          // Draw the whole scene

@@ -28,6 +28,7 @@ HEADERS += mainwindow.h \
     database.h \
     player.h \
     monster.h \
+    qgraphicsPmapItem.h \
     role.h \
     tools.h \
     keys.h \
